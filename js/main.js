@@ -298,6 +298,7 @@ function initTerminal() {
     document.querySelector('.terminal-header .title').textContent = `guest@${host}: ~`;
     
     const banner = `
+<span class="ascii-banner-art">
                                                         .                                           
                                                        .:                                           
                                                        :=                                           
@@ -323,6 +324,7 @@ function initTerminal() {
                                           -            -=                                           
                                                        :-                                           
                                                         .
+</span>
 hola loco te conectaste a la red de Sirio, comiensa tu salto.
 --------------------------------------------------
 System Info:
@@ -331,7 +333,7 @@ Navegador (Agente): ${navigator.userAgent || 'Desconocido'}
 CPUs Lógicas: ${navigator.hardwareConcurrency || 'Desconocidas'}
 --------------------------------------------------
 `;
-    printToTerminal(banner);
+    printToTerminal(banner, true);
 
     printToTerminal('Bienvenido a Lnux Icar. Por favor, inicie sesión.');
     printToTerminal('');
