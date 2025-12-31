@@ -7,7 +7,7 @@ let loginUsername = '';
 
 // --- Sistema de Correo Virtual ---
 const mailSystem = {
-    'sirob': [
+    'admin': [
         {
             id: 1,
             sender: '[REDACTED]',
