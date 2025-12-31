@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Terminal Linux</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="button close"></div>
+            <div class="button minimize"></div>
+            <div class="button maximize"></div>
+            <div class="title">user@linux-sim: ~</div>
+        </div>
+        <div id="terminal-body" class="terminal-body">
+            <!-- El contenido se generará con JavaScript -->
+        </div>
+    </div>
+
+    <!-- Modal para el editor Nano -->
+    <div id="nano-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="nano-title">Editor Nano</h3>
+                <span class="close-btn" onclick="closeNano()">&times;</span>
+            </div>
+            <div id="nano-editor">
+                <textarea id="nano-textarea"></textarea>
+            </div>
+            <div class="nano-footer">
+                <span style="color: #888;">[ Ctrl+X para salir y guardar ]</span>
+                <button onclick="saveAndCloseNano()">Guardar y Salir</button>
+                <button onclick="closeNano()">Salir sin guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para visor de medios -->
+    <div id="media-viewer" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Visor de Multimedia</h3>
+                <span class="close-btn" onclick="closeMediaViewer()">&times;</span>
+            </div>
+            <div id="media-content">
+                <!-- El contenido (img, video, audio) se inyectará aquí -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/filesystem.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

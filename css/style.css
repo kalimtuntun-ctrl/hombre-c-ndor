@@ -1,0 +1,199 @@
+/* --- Estilos Generales --- */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
+        :root {
+            --bg-color: #1e1e1e;
+            --text-color: #33ff33;
+            --prompt-color: #ffffff;
+            --border-color: #444;
+        }
+
+        body {
+            background-color: #121212;
+            color: var(--text-color);
+            font-family: 'Fira Code', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* --- Contenedor de la Terminal --- */
+        .terminal-container {
+            width: 100%;
+            /* max-width: 900px; */
+            height: 100vh;
+            background-color: var(--bg-color);
+            /* border: 1px solid var(--border-color); */
+            /* border-radius: 8px; */
+            /* box-shadow: 0 0 20px rgba(0, 255, 0, 0.2); */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            /* background-color: #333; */
+            /* padding: 8px 12px; */
+            /* display: flex; */
+            /* align-items: center; */
+            /* border-bottom: 1px solid var(--border-color); */
+            display: none; /* Ocultar completamente el encabezado */
+        }
+
+        .terminal-header .button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .terminal-header .button.close { background-color: #ff5f56; }
+        .terminal-header .button.minimize { background-color: #ffbd2e; }
+        .terminal-header .button.maximize { background-color: #27c93f; }
+        
+        .terminal-header .title {
+            color: #ccc;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        /* --- Cuerpo de la Terminal --- */
+        .terminal-body {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .terminal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .terminal-body::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        
+        .terminal-body::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 4px;
+        }
+
+        .terminal-output-line {
+            margin-bottom: 5px;
+        }
+
+        /* --- Línea de Entrada --- */
+        .input-line {
+            display: flex;
+            align-items: center;
+        }
+        
+        .prompt {
+            color: var(--prompt-color);
+            margin-right: 8px;
+        }
+
+        #terminal-input {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: inherit;
+            outline: none;
+            flex-grow: 1;
+        }
+
+        /* --- Modal para Programas (Nano, Reproductores) --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 700px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--prompt-color);
+        }
+
+        .close-btn {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-btn:hover { color: #fff; }
+
+        /* --- Estilos del Editor Nano --- */
+        #nano-editor textarea {
+            width: 100%;
+            height: 400px;
+            background-color: #222;
+            color: var(--text-color);
+            border: 1px solid #555;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        .nano-footer {
+            text-align: right;
+            margin-top: 10px;
+        }
+        .nano-footer button {
+            background-color: #333;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+        }
+        .nano-footer button:hover {
+            background-color: #444;
+        }
+        
+        /* --- Estilos para Reproductores --- */
+        #media-viewer img, #media-viewer video, #media-viewer audio {
+            max-width: 100%;
+            display: block;
+            margin: auto;
+        }
+        #media-viewer audio {
+            width: 100%;
+            margin-top: 20px;
+        }
+    
