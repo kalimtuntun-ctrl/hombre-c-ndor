@@ -392,7 +392,7 @@ CPUs Lógicas: ${navigator.hardwareConcurrency || 'Desconocidas'}
 `;
     printToTerminal(banner, true);
 
-    printToTerminal('Hola loco te conectaste a la red de Sirio, comiensa tu salto.');
+    printToTerminal(' Hola loco te conectaste a la red de Sirio, comiensa tu salto.');
     printToTerminal('');
     promptForUsername();
 }
