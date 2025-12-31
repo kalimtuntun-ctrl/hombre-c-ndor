@@ -83,13 +83,51 @@ function handleCommand(event) {
     switch (command) {
         case 'help':
             printToTerminal('Comandos disponibles:');
-            printToTerminal('  help        - Muestra esta ayuda.');
-            printToTerminal('  ls          - Lista el contenido del directorio.');
-            printToTerminal('  cd <dir>    - Cambia de directorio. Usa ".." para ir al padre, "~" para tu home.');
-            printToTerminal('  cat <file>  - Muestra el contenido de un archivo.');
-            printToTerminal('  nano <file> - Abre el editor de texto para un archivo.');
-            printToTerminal('  clear       - Limpia la pantalla.');
-            printToTerminal('  logout      - Cierra la sesión actual.');
+            printToTerminal('  help             - Muestra esta ayuda.');
+            printToTerminal('  ls               - Lista el contenido del directorio. Ejemplo: `ls`');
+            printToTerminal('  cd <dir>         - Cambia de directorio. Usa ".." para ir al padre, "~" para tu home. Ejemplo: `cd documentos`');
+            printToTerminal('  cat <file>       - Muestra el contenido de un archivo. Ejemplo: `cat readme.txt, mp3, mp4, png, jpg`');
+            printToTerminal('  nano <file>      - Abre el editor de texto para un archivo. Ejemplo: `nano nota.txt`');
+            printToTerminal('  download <file>  - Descarga un archivo a tu computadora. Ejemplo: `download musica/Homio.yt`');
+            printToTerminal('  clear            - Limpia la pantalla.');
+            printToTerminal('  logout           - Cierra la sesión actual.');
+            break;
+
+        case 'download':
+            if (!arg) {
+                printToTerminal('download: especifica un nombre de archivo.');
+                break;
+            }
+            const downloadFilePath = resolvePath(arg);
+            const downloadFile = getFileFromPath(downloadFilePath);
+
+            if (!downloadFile) {
+                printToTerminal(`download: ${arg}: No existe el archivo.`);
+                break;
+            }
+
+            const link = document.createElement('a');
+            link.download = arg.split('/').pop(); // Get filename
+
+            if (downloadFile.type === 'file') { // For text files
+                const blob = new Blob([downloadFile.content], { type: 'text/plain' });
+                link.href = URL.createObjectURL(blob);
+                printToTerminal(`Descargando ${link.download}...`);
+            } else if (downloadFile.url) { // For media files with URLs
+                link.href = downloadFile.url;
+                link.target = '_blank'; // Open in new tab
+                printToTerminal(`Intentando descargar ${link.download}... Si no se descarga automáticamente, se abrirá en una nueva pestaña. Desde ahí, puedes guardarlo manualmente (clic derecho > Guardar como).`);
+            } else {
+                printToTerminal(`download: no se puede descargar ${arg}.`);
+                break;
+            }
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            if (link.href.startsWith('blob:')) {
+                URL.revokeObjectURL(link.href);
+            }
             break;
 
         case 'ls':
