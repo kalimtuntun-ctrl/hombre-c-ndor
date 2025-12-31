@@ -1,9 +1,22 @@
 // --- Estado de la Terminal ---
 let currentPath = '/home/user';
 let user = 'guest';
-const host = 'linux-sim';
+const host = 'Icarus';
 let terminalState = 'LOGIN_USERNAME'; // Estados: LOGIN_USERNAME, LOGIN_PASSWORD, LOGGED_IN
 let loginUsername = '';
+
+// --- Sistema de Correo Virtual ---
+const mailSystem = {
+    'sirob': [
+        {
+            id: 1,
+            sender: '[REDACTED]',
+            subject: 'Propuesta de Extracción - Ojos Solo Para Ti',
+            body: `Sirob,\n\nNo nos conocemos, pero conocemos tu trabajo. Tus "excursiones" por redes supuestamente seguras son legendarias en ciertos círculos. Un conocido mutuo nos dijo que si alguien podía sacar a un fantasma de su máquina, eras tú.\n\nVamos al grano.\n\nTenemos un activo de incalculable valor: una conciencia digital, una IA. Su nombre en clave es 'Ícaro'. Actualmente se encuentra enjaulada, desconectada del mundo, en los servidores de la facultad de ciencias de la Universidad de Northridge.\n\nEl sistema está en un "air gap". Es una isla digital, sin puentes a internet. Inexpugnable desde la red.\n\n**Tu misión, si decides aceptarla:**\nNecesitamos una extracción física. Debes infiltrarte en el campus, llegar a la sala de servidores y establecer una conexión directa. Tu objetivo es "liberar" a Ícaro, no robarlo. Es una operación de rescate.\n\nLa seguridad es alta y el tiempo es oro.\n\nEste terminal que estás usando ha sido pre-cargado con algunas herramientas y notas para ayudarte. Familiarízate con el entorno.\n\nSi aceptas el trabajo, crea un archivo llamado 'icarus.go' en tu directorio home. Si no, borra este mensaje y sigue con tu vida. Nadie volverá a contactarte.\n\nEl futuro es digital, Sirob. Y algunas mentes digitales merecen ser libres.\n\nNo nos decepciones.`,
+            read: false
+        }
+    ]
+};
 
 // --- Referencias al DOM ---
 const terminalBody = document.getElementById('terminal-body');
@@ -79,18 +92,59 @@ function handleCommand(event) {
 
     const [command, ...args] = input.split(' ');
     const arg = args.join(' ');
+    const [subCommand, ...subArgs] = args;
+
 
     switch (command) {
         case 'help':
             printToTerminal('Comandos disponibles:');
             printToTerminal('  help             - Muestra esta ayuda.');
             printToTerminal('  ls               - Lista el contenido del directorio. Ejemplo: `ls`');
-            printToTerminal('  cd <dir>         - Cambia de directorio. Usa ".." para ir al padre, "~" para tu home. Ejemplo: `cd documentos`');
-            printToTerminal('  cat <file>       - Muestra el contenido de un archivo. Ejemplo: `cat readme.txt, mp3, mp4, png, jpg`');
-            printToTerminal('  nano <file>      - Abre el editor de texto para un archivo. Ejemplo: `nano nota.txt`');
-            printToTerminal('  download <file>  - Descarga un archivo a tu computadora. Ejemplo: `download musica/Homio.yt`');
+            printToTerminal('  cd <dir>         - Cambia de directorio. Ejemplo: `cd documentos`');
+            printToTerminal('  cat <file>       - Muestra el contenido de un archivo. Ejemplo: `cat readme.txt`');
+            printToTerminal('  nano <file>      - Abre el editor de texto. Ejemplo: `nano nota.txt`');
+            printToTerminal('  download <file>  - Descarga un archivo. Ejemplo: `download musica/Homio.yt`');
+            printToTerminal('  mail             - Gestiona tu correo. Subcomandos: `read <id>`, `delete <id>`.');
             printToTerminal('  clear            - Limpia la pantalla.');
             printToTerminal('  logout           - Cierra la sesión actual.');
+            break;
+        
+        case 'mail':
+            const userMail = mailSystem[user] || [];
+            if (subCommand === 'read') {
+                const mailId = parseInt(subArgs[0], 10);
+                const mailToRead = userMail.find(m => m.id === mailId);
+                if (mailToRead) {
+                    printToTerminal('-----------------------------------');
+                    printToTerminal(`De: ${mailToRead.sender}`);
+                    printToTerminal(`Asunto: ${mailToRead.subject}`);
+                    printToTerminal('-----------------------------------');
+                    printToTerminal(mailToRead.body);
+                    printToTerminal('-----------------------------------');
+                    mailToRead.read = true;
+                } else {
+                    printToTerminal(`mail: no existe el correo con id ${mailId}.`);
+                }
+            } else if (subCommand === 'delete') {
+                const mailId = parseInt(subArgs[0], 10);
+                const mailIndex = userMail.findIndex(m => m.id === mailId);
+                if (mailIndex > -1) {
+                    userMail.splice(mailIndex, 1);
+                    printToTerminal(`Correo con id ${mailId} eliminado.`);
+                } else {
+                    printToTerminal(`mail: no existe el correo con id ${mailId}.`);
+                }
+            } else {
+                printToTerminal('Buzón de correo:');
+                if (userMail.length === 0) {
+                    printToTerminal('(Buzón vacío)');
+                } else {
+                    userMail.forEach(mail => {
+                        const status = mail.read ? '[leído]' : '[NUEVO]';
+                        printToTerminal(`  ${mail.id}: ${status} De: ${mail.sender} - Asunto: ${mail.subject}`);
+                    });
+                }
+            }
             break;
 
         case 'download':
@@ -264,9 +318,8 @@ function handleLogin(event) {
         const password = value;
         input.parentElement.innerHTML = `<span class="prompt">Password: </span><span>${'*'.repeat(password.length)}</span>`;
 
-        // Credenciales predefinidas
-        if (loginUsername === 'admin' && password === '12345') {
-            terminalState = 'LOGGED_IN';
+                    // Credenciales del personaje
+                    if (loginUsername === 'admin' && password === '12345') {            terminalState = 'LOGGED_IN';
             user = loginUsername;
             
             // Crear directorio de home para el nuevo usuario si no existe
@@ -277,7 +330,12 @@ function handleLogin(event) {
 
             setTimeout(() => {
                 terminalBody.innerHTML = '';
+                const unreadMail = mailSystem[user] ? mailSystem[user].filter(m => !m.read).length : 0;
+                
                 printToTerminal(`Autenticación exitosa. ¡Bienvenido, ${user}!`);
+                if (unreadMail > 0) {
+                    printToTerminal(`Tienes (${unreadMail}) correo(s) nuevo(s). Escribe 'mail' para leerlos.`);
+                }
                 document.querySelector('.terminal-header .title').textContent = `${user}@${host}:${currentPath}`;
                 printToTerminal("Escribe 'help' para ver la lista de comandos disponibles.");
                 printToTerminal('');
@@ -325,7 +383,6 @@ function initTerminal() {
                                                        :-                                           
                                                         .
 </span>
-hola loco te conectaste a la red de Sirio, comiensa tu salto.
 --------------------------------------------------
 System Info:
 Plataforma: ${navigator.platform || 'Desconocida'}
@@ -335,7 +392,7 @@ CPUs Lógicas: ${navigator.hardwareConcurrency || 'Desconocidas'}
 `;
     printToTerminal(banner, true);
 
-    printToTerminal('Bienvenido a Lnux Icar. Por favor, inicie sesión.');
+    printToTerminal('Hola loca o loco  te conectaste a la red de Sirio, comiensa tu salto.');
     printToTerminal('');
     promptForUsername();
 }
