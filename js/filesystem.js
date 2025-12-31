@@ -12,7 +12,8 @@ const fileSystem = {
                                 type: 'directory',
                                 content: {
                                     'nota.txt': { type: 'file', content: 'Este es un recordatorio importante.\n- Comprar leche\n- Llamar a Juan\n- Revisar el correo.' },
-                                    'proyecto.md': { type: 'file', content: '# Mi Proyecto\n\n## Descripción\nEste es un archivo markdown de ejemplo.' }
+                                    'proyecto.md': { type: 'file', content: '# Mi Proyecto\n\n## Descripción\nEste es un archivo markdown de ejemplo.' },
+                                    'trabajo.md': { type: 'file', content: '# P. Rescate AI\n\n## Descripción\n.' }
                                 }
                             },
                             'imagenes': {
