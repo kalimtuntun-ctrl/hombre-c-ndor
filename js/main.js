@@ -7,7 +7,7 @@ let loginUsername = '';
 
 // --- Sistema de Correo Virtual ---
 const mailSystem = {
-    'admin': [
+    'Siro': [
         {
             id: 1,
             sender: '[REDACTED]',
