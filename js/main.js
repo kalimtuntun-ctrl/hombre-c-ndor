@@ -12,7 +12,8 @@ const mailSystem = {
             id: 1,
             sender: 'Nayar',
             subject: 'Propuesta de Extracción - Ojos Solo Para Ti',
-            body: `Siro,\n\nNo nos conocemos, pero deseo hacer cosas grandes. Quizás tú también. Desde hace tiempo noto que quieres cambiar las cosas, 
+            body: `Siro,\n\n
+            No nos conocemos, pero deseo hacer cosas grandes. Quizás tú también. Desde hace tiempo noto que quieres cambiar las cosas, 
             pero el miedo o a veces, cosas extremas te paralizan. Así que es mejor jugar un juego dentro de este juego.
             Podría poner un montón de basura filosófica, pero no me parece que tenga sentido hacerme el intelectual; solo soy una
             persona inconforme. Descubrí que tu novia se fue con un militar jajajaja, lo siento así es la vida supongo. Mira
