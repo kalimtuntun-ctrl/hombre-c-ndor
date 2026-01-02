@@ -11,7 +11,7 @@ const mailSystem = {
         {
             id: 1,
             sender: 'Nayar',
-            subject: 'Propuesta de Extracción - Ojos Solo Para Ti',
+            subject: 'Propuesta de trabajo, micion EL LOCO DE ICARO',
             body: `Siro,\n\n
             No nos conocemos, pero deseo hacer cosas grandes. Quizás tú también. Desde hace tiempo noto que quieres cambiar las cosas, 
             pero el miedo o a veces, cosas extremas te paralizan. Así que es mejor jugar un juego dentro de este juego.
