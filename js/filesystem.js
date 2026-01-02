@@ -27,7 +27,7 @@ const fileSystem = {
                                 type: 'directory',
                                 content: {
                                     'cancion.mp3': { type: 'audio', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-                                    'Siro.mp3': { type: 'video', url: 'https://github.com/kalimtuntun-ctrl/hombre-c-ndor/blob/main/m%C3%BAsica/Project_1.mp3' },
+                                    'Siro.mp3': { type: 'video', url: 'https://drive.google.com/file/d/1phitSy-AYCpLW0y8BkX7yPhjQTN26SR1/view?usp=drive_link' },
                                     'Omio.yt': { type: 'video', url: 'https://www.youtube.com/watch?v=Gf_BAOy90n4' }
                                 }
                             },
