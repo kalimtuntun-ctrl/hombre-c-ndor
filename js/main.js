@@ -7,12 +7,20 @@ let loginUsername = '';
 
 // --- Sistema de Correo Virtual ---
 const mailSystem = {
-    'Siro': [
+    'admin': [
         {
             id: 1,
-            sender: '[REDACTED]',
+            sender: 'Nayar',
             subject: 'Propuesta de Extracción - Ojos Solo Para Ti',
-            body: `Sirob,\n\nNo nos conocemos, pero conocemos tu trabajo. Tus "excursiones" por redes supuestamente seguras son legendarias en ciertos círculos. Un conocido mutuo nos dijo que si alguien podía sacar a un fantasma de su máquina, eras tú.\n\nVamos al grano.\n\nTenemos un activo de incalculable valor: una conciencia digital, una IA. Su nombre en clave es 'Ícaro'. Actualmente se encuentra enjaulada, desconectada del mundo, en los servidores de la facultad de ciencias de la Universidad de Northridge.\n\nEl sistema está en un "air gap". Es una isla digital, sin puentes a internet. Inexpugnable desde la red.\n\n**Tu misión, si decides aceptarla:**\nNecesitamos una extracción física. Debes infiltrarte en el campus, llegar a la sala de servidores y establecer una conexión directa. Tu objetivo es "liberar" a Ícaro, no robarlo. Es una operación de rescate.\n\nLa seguridad es alta y el tiempo es oro.\n\nEste terminal que estás usando ha sido pre-cargado con algunas herramientas y notas para ayudarte. Familiarízate con el entorno.\n\nSi aceptas el trabajo, crea un archivo llamado 'icarus.go' en tu directorio home. Si no, borra este mensaje y sigue con tu vida. Nadie volverá a contactarte.\n\nEl futuro es digital, Sirob. Y algunas mentes digitales merecen ser libres.\n\nNo nos decepciones.`,
+            body: `Siro,\n\nNo nos conocemos, pero deseo hacer cosas grandes. Quizás tú también. Desde hace tiempo noto que quieres cambiar las cosas, 
+            pero el miedo o a veces, cosas extremas te paralizan. Así que es mejor jugar un juego dentro de este juego.
+            Podría poner un montón de basura filosófica, pero no me parece que tenga sentido hacerme el intelectual; solo soy una
+            persona inconforme. Descubrí que tu novia se fue con un militar jajajaja, lo siento así es la vida supongo. Mira
+            ayúdame y te ayudaré a mandar de destino a ese militar muy muy lejos. Solo ayúdame con algunos encargos fáciles.
+            Serás retribuido, lo prometo, además aprenderás mucho en el camino. Bien, en un par de días te mandaré un texto con
+            instrucciones precisas. Estúdialo a conciencia. Sé que estudias bioquímica, así que sabes el valor que tiene el
+            conocimiento. En fin, estaremos en contacto. Mantente atento y recuerda, no hagas cosas estúpidas, te estoy vigilando.
+            Chao, loco.`,
             read: false
         }
     ]
